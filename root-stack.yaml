@@ -67,3 +67,23 @@ Resources:
           Fn::GetAtt:
             - devVpc
             - Outputs.vpcId
+  ec2Instance:
+    Type: AWS::CloudFormation::Stack
+    DependsOn:
+      - sshKeyPair
+      - devVpc
+      - internetGateway
+      - routeTable
+      - devPublicSubnet
+      - ec2SecurityGroup
+    Properties:
+      TemplateURL: https://bucket-cf-template.s3.ap-southeast-1.amazonaws.com/ec2/main.yaml
+      Parameters:
+        securityGroupId:
+          Fn::GetAtt:
+            - ec2SecurityGroup
+            - Outputs.securityGroupId
+        publicSubnetId:
+          Fn::GetAtt:
+            - devPublicSubnet
+            - Outputs.publicSubnetId
