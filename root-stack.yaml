@@ -20,3 +20,19 @@ Resources:
           Fn::GetAtt:
             - devVpc
             - Outputs.vpcId
+  routeTable:
+    Type: AWS::CloudFormation::Stack
+    DependsOn:
+      - devVpc
+      - internetGateway
+    Properties:
+      TemplateURL: https://bucket-cf-template.s3.ap-southeast-1.amazonaws.com/vpc/route-table.yaml
+      Parameters:
+        vpcId:
+          Fn::GetAtt:
+            - devVpc
+            - Outputs.vpcId
+        internetGatewayId:
+          Fn::GetAtt:
+            - internetGateway
+            - Outputs.internetGatewayId

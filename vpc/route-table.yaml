@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Route table for Dev VPC
+Parameters:
+  vpcId:
+    Type: String
+  internetGatewayId:
+    Type: String
+Resources:
+  publicSubnetRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref vpcId
+      Tags:
+      - Key: Name
+        Value: devopslite-dev-vpc-route-table
+  publicSubnetDefaultRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      RouteTableId: !Ref publicSubnetRouteTable
+      GatewayId: !Ref internetGatewayId
+  publicSubnetDefaultIpv6Route:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationIpv6CidrBlock: ::/0
+      RouteTableId: !Ref publicSubnetRouteTable
+      GatewayId: !Ref internetGatewayId
+Outputs:
+  publicSubnetRouteTableId:
+    Value: !Ref publicSubnetRouteTable
+    Export:
+      Name: publicSubnetRouteTableId
