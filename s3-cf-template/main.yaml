@@ -1,0 +1,7 @@
+Resources:
+  s3BucketForCf:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: cf-bucket-template
+      VersioningConfiguration:
+        Status: Enabled
