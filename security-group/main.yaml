@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Security Group for dev EC2 instance
+Parameters:
+  vpcId:
+    Type: String
+Resources:
+  ec2SecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: SG for dev EC2 instance
+      GroupName: devopslite-sg-dev-ec2
+      VpcId: !Ref vpcId
+      Tags:
+        - Key: Name
+          Value: devopslite-sg-dev-ec2
+      SecurityGroupIngress:
+        - IpProtocol: icmp
+          FromPort: 8
+          ToPort: -1
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 42.119.200.215/32
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0

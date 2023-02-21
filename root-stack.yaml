@@ -56,3 +56,14 @@ Resources:
           Fn::GetAtt:
             - devVpc
             - Outputs.ipv6CidrBlock
+  ec2SecurityGroup:
+    Type: AWS::CloudFormation::Stack
+    DependsOn:
+      - devVpc
+    Properties:
+      TemplateURL: https://bucket-cf-template.s3.ap-southeast-1.amazonaws.com/security-group/main.yaml
+      Parameters:
+        vpcId:
+          Fn::GetAtt:
+            - devVpc
+            - Outputs.vpcId
