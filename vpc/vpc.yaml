@@ -12,3 +12,13 @@ Resources:
           Value: devopslite-dev-vpc
         - Key: Env
           Value: Dev
+  ipv6CidrBlock:
+    Type: AWS::EC2::VPCCidrBlock
+    Properties:
+      VpcId: !Ref devVpc
+      AmazonProvidedIpv6CidrBlock: true
+Outputs:
+  vpcId:
+    Value: !Ref devVpc
+    Export:
+      Name: vpcId

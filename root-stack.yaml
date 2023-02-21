@@ -4,8 +4,19 @@ Resources:
   sshKeyPair:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://cf-bucket-template.s3.ap-southeast-1.amazonaws.com/key-pair/main.yaml
+      TemplateURL: https://bucket-cf-template.s3.ap-southeast-1.amazonaws.com/key-pair/main.yaml
   devVpc:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://cf-bucket-template.s3.ap-southeast-1.amazonaws.com/vpc/vpc.yaml
+      TemplateURL: https://bucket-cf-template.s3.ap-southeast-1.amazonaws.com/vpc/vpc.yaml
+  # devPublicSubnet:
+  #   Type: AWS::CloudFormation::Stack
+  #   DependsOn:
+  #     - devVpc
+  #   Properties:
+  #     TemplateURL: https://bucket-cf-template.s3.ap-southeast-1.amazonaws.com/vpc/subnet.yaml
+  #     Parameters:
+  #       VpcId:
+  #         Fn::GetAtt:
+  #           - devVpc
+  #           - Outputs.vpcId
