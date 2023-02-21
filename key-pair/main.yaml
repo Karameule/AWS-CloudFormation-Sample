@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Import SSH key pair from local
+Resources:
+  sshKeyPair:
+    Type: AWS::EC2::KeyPair
+    Properties:
+      KeyName: devopslite-key
+      PublicKeyMaterial: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDP9FWMfxAFdue7X6iEjcm+YLzjWFnSg20ux3PS2Haley/OMo4S4TM1s/5okvERneoDitaU/IFOPrbEke4Sc8lVXrsL3VRzfa0t9e4YfRdZytZ8InuuEe91dQQZty+lfhjNJHovHb2iwcYNwpywUzlkhb3DT0G3px83i/LmcQkuOFm++p0SE/dPOERMabAgjyt0QKgkV34RaZQcIlnmkOIwBtQZ/wzLmXLnBkwXcpjaxjqKM3/ooN/hp2NYjhWcRgkKYeyttteVEq1kFGqXoGBxC/sw+P86zwcnmT4FMTTKd0ByO8OS5kFNTFXtix2clG+R0Bkz6UC9RPFnJ6Jj/1PrW85FsuFXkumJRsz3zb/M9qbm8Oh0L1EtdRyZExq5VzILCguwkpFP2zkVCvcBnlvcKxb2ZR8UeFHu4Ytw5mVQgt+hb6B9An9gVf8AhVcNWHkr9WB70idVvzZLdbEgP5k2S987y0cm3Fxc+dcogZBqMkal2VyYOC7V4dGDcZ2VjFk= dung@dung-pc
+      Tags:
+        - Key: Name
+          Value: devopslite-key
+        - Key: Env
+          Value: Dev
