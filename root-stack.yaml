@@ -36,3 +36,23 @@ Resources:
           Fn::GetAtt:
             - internetGateway
             - Outputs.internetGatewayId
+  devPublicSubnet:
+    Type: AWS::CloudFormation::Stack
+    DependsOn:
+      - devVpc
+      - routeTable
+    Properties:
+      TemplateURL: https://bucket-cf-template.s3.ap-southeast-1.amazonaws.com/vpc/subnet.yaml
+      Parameters:
+        vpcId:
+          Fn::GetAtt:
+            - devVpc
+            - Outputs.vpcId
+        publicSubnetRouteTableId:
+          Fn::GetAtt:
+            - routeTable
+            - Outputs.publicSubnetRouteTableId
+        ipv6CidrBlock:
+          Fn::GetAtt:
+            - devVpc
+            - Outputs.ipv6CidrBlock

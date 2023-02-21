@@ -26,3 +26,7 @@ Outputs:
     Value: !Ref ipv6CidrBlock
     Export:
       Name: ipv6CidrBlockId
+  ipv6CidrBlock:
+    Value: !Select [ 0, !Cidr [ !Select [ 0, !GetAtt devVpc.Ipv6CidrBlocks], 1, 64 ]]
+    Export:
+      Name: ipv6CidrBlock
