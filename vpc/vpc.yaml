@@ -22,3 +22,7 @@ Outputs:
     Value: !Ref devVpc
     Export:
       Name: vpcId
+  ipv6CidrBlockId:
+    Value: !Ref ipv6CidrBlock
+    Export:
+      Name: ipv6CidrBlockId
