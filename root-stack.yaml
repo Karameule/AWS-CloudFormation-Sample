@@ -9,14 +9,14 @@ Resources:
     Type: AWS::CloudFormation::Stack
     Properties:
       TemplateURL: https://bucket-cf-template.s3.ap-southeast-1.amazonaws.com/vpc/vpc.yaml
-  # devPublicSubnet:
-  #   Type: AWS::CloudFormation::Stack
-  #   DependsOn:
-  #     - devVpc
-  #   Properties:
-  #     TemplateURL: https://bucket-cf-template.s3.ap-southeast-1.amazonaws.com/vpc/subnet.yaml
-  #     Parameters:
-  #       VpcId:
-  #         Fn::GetAtt:
-  #           - devVpc
-  #           - Outputs.vpcId
+  internetGateway:
+    Type: AWS::CloudFormation::Stack
+    DependsOn:
+      - devVpc
+    Properties:
+      TemplateURL: https://bucket-cf-template.s3.ap-southeast-1.amazonaws.com/vpc/internet-gateway.yaml
+      Parameters:
+        vpcId:
+          Fn::GetAtt:
+            - devVpc
+            - Outputs.vpcId

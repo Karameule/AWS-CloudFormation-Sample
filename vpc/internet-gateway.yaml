@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Internet gateway for Dev VPC
+Parameters:
+  vpcId:
+    Type: String
+Resources:
+  internetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name
+        Value: devopslite-dev-vpc-igw
+  internetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref vpcId
+      InternetGatewayId: !Ref internetGateway
+Outputs:
+  internetGatewayId:
+    Value: !Ref internetGateway
+    Export:
+      Name: internetGatewayId
