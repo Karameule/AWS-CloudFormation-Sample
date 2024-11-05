@@ -4,4 +4,4 @@ Resources:
   s3BucketForCf:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: bucket-cf-template
+      BucketName: bucket-cf-template-s3
