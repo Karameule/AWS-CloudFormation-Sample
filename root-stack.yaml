@@ -61,7 +61,7 @@ Resources:
     DependsOn:
       - devVpc
     Properties:
-      TemplateURL: https://bucket-cf-template.s3-cf.ap-southeast-1.amazonaws.com/security-group/main.yaml
+      TemplateURL: https://bucket-cf-template-cf.s3.ap-southeast-1.amazonaws.com/security-group/main.yaml
       Parameters:
         vpcId:
           Fn::GetAtt:
@@ -77,7 +77,7 @@ Resources:
       - devPublicSubnet
       - ec2SecurityGroup
     Properties:
-      TemplateURL: https://bucket-cf-template.s3-cf.ap-southeast-1.amazonaws.com/ec2/main.yaml
+      TemplateURL: https://bucket-cf-template-cf.s3.ap-southeast-1.amazonaws.com/ec2/main.yaml
       Parameters:
         securityGroupId:
           Fn::GetAtt:
